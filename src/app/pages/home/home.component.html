@@ -1,0 +1,54 @@
+<div class="wrapper">
+  <!-- SideNav -->
+  <div class="sidenav">
+    <!-- Gắn Header Component vào đây -->
+    <div class="logo">
+      <img src="./assets/img/Logo_STU.png" alt="Company Logo" />
+    </div>
+    <hr class="divider">
+    <ul class="nav-links">
+      <li><a href="/home"><i class="material-icons"></i> Home</a></li>
+      <li><a href="/sidenav"><i class="material-icons"></i> Question</a></li>
+      <li><a href="/exam"><i class="material-icons"></i> Exam</a></li>
+      <li><a href="/home"><i class="material-icons"></i> User</a></li>
+      <li><a href="/dashboard4"><i class="material-icons"></i> Class</a></li>
+      <!-- Add more navigation links here -->
+    </ul>
+  </div>
+
+  <!-- User List -->
+  <div class="user-list">
+    <h1>USER</h1>
+    <button class="add-user-button" >Add User</button> <!-- Button to add user -->
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Actions</th>
+        </tr>
+        <tr>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{user.id}}</td>
+          <td>{{user.name}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.role?.name}}</td> <!-- Assuming role has a 'name' property -->
+          <td>
+            <button>Edit</button> <!-- Button to edit user -->
+            <button>Delete</button> <!-- Button to delete user -->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

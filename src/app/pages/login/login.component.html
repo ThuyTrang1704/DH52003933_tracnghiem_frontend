@@ -1,0 +1,68 @@
+<!-- 
+<div class="parent">
+    <div class="container">
+        <div class="login-box">
+            <h2>Login</h2>
+            <form action="#">
+                <div class="input-box">
+                    <input type="email" [(ngModel)]="loginObj.Email" name="Email" required>
+                    <label>Email</label>
+                </div>
+                <div class="input-box">
+                    <input type="password" [(ngModel)]="loginObj.Password" name="Password" required>
+                    <label>Password</label>
+                </div>
+                
+                <button type="button" class="btn" (click)="onLogin()" >Login</button>
+                 
+            </form>
+        </div>
+        
+    </div>
+</div> -->
+
+
+<div class="flex">
+    <div class="container">
+      <div class="image-container">
+        <img aria-hidden="true" src="../assets/img/truong.jpg" alt="Office">
+      </div>
+      <div class="form-container">
+        <form>
+          <h1>Login</h1>
+          <label>
+            <span>Email</span>
+            <input type="email" placeholder="Jane Doe">
+          </label>
+          <label>
+            <span>Password</span>
+            <input type="password" placeholder="***************">
+          </label>
+          <button type="submit">Log in</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="flex">
+    <div class="container">
+      <div class="image-container">
+        <img aria-hidden="true" src="../assets/img/truong.jpg" alt="Office">
+      </div>
+      <div class="form-container">
+        <form (ngSubmit)="onSubmit()">
+          <h1>Login</h1>
+          <label>
+            <span>Email</span>
+            <input type="email" [(ngModel)]="email" name="email" placeholder="Jane Doe">
+          </label>
+          <label>
+            <span>Password</span>
+            <input type="password" [(ngModel)]="password" name="password" placeholder="***************">
+          </label>
+          <button type="submit">Log in</button>
+        </form>
+      </div>
+    </div>
+  </div> -->
+  
