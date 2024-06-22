@@ -5,8 +5,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { authGuard } from './service/auth.guard';
 import { HomeComponent } from './pages/home/home.component';
 import { SidenavComponent } from './pages/sidenav/sidenav.component';
-import { HeaderComponent } from './pages/header/header.component';
 import { ExamComponent } from './pages/exam/exam.component';
+import { UserComponent } from './pages/user/user.component';
 
 
 export const routes: Routes = [
@@ -60,6 +60,17 @@ export const routes: Routes = [
             {
                 path:'exam',
                 component:ExamComponent,
+                canActivate: [authGuard]
+            }
+        ]
+        
+    }, {
+        path:'user',
+        component:UserComponent,
+        children:[
+            {
+                path:'user',
+                component:UserComponent,
                 canActivate: [authGuard]
             }
         ]

@@ -1,44 +1,69 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
+const apiUrl = 'http://localhost:9002/api/auth/login';
 
 @Component({
   selector: 'app-login',
-  standalone: true,
-  imports: [FormsModule, HttpClientModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
+  constructor(private router: Router, private httpClient: HttpClient) {}
 
-  loginObj:Login;
+  data: any[] = [];
+  remember: boolean = false;
+  user = {
+    email: '',
+    password: ''
+  };
 
-  constructor(private http: HttpClient,private router: Router) {
-    this.loginObj = new Login();
+  ngOnInit(): void {
+    this.fetchData();
   }
 
-  onLogin() {
-    debugger;
-    this.http.post('http://localhost:9002/api/auth/login', this.loginObj).subscribe((res:any)=>{
-      if(res.result) {
-        alert("Login Success");
-        localStorage.setItem('angular17token', res.data.token)
-        this.router.navigateByUrl('/dashboard')
-      } else {
-        alert(res.message)
+  fetchData() {
+    this.httpClient.get(apiUrl).subscribe((data: any) => {
+      console.log(data);
+      this.data = data;
+    });
+  }
+
+  onSubmit() {
+    const loginData = {
+      email: this.user.email,
+      password: this.user.password
+    };
+
+    this.httpClient.post(apiUrl, loginData).subscribe(
+      (response: any) => {
+        console.log(response);
+        if (response.message === "true") {
+          // Display success message
+          alert("Welcome");
+          localStorage.setItem("isLoggedIn", "true");
+          localStorage.setItem("response", response.role);
+          localStorage.setItem("email", response.email);
+          if (response.role == '1') {
+            this.router.navigate(['']).then(() => {
+              window.location.reload();
+            });
+          } else if (response.role == "2") {
+            this.router.navigate(['/home']).then(() => {
+              window.location.reload();
+            });
+          }
+        } else {
+          // Handle unsuccessful login
+          console.error('Login error:', response);
+        }
+      },
+      (error: any) => {
+        // Handle error
+        alert('Incorrect username or password');
+        console.error('Incorrect username or password', error);
       }
-    })
+    );
   }
 }
-
-export class Login { 
-    Email: string;
-    Password: string;
-    constructor() {
-      this.Email = '';
-      this.Password = '';
-    }
-}
-

@@ -5,6 +5,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { SidenavComponent } from './pages/sidenav/sidenav.component';
 import { ExamComponent } from './pages/exam/exam.component';
 import { CreateExamComponent } from './pages/create-exam/create-exam.component';
+import { LoginComponent } from './pages/login/login.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -12,7 +13,8 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   {path:'sidenav',component:SidenavComponent},
   {path:'exam',component:ExamComponent},
-  {path:'create_exam',component:CreateExamComponent}
+  {path:'create_exam',component:CreateExamComponent},
+  {path:'login',component:LoginComponent}
 ];
 
 @NgModule({
